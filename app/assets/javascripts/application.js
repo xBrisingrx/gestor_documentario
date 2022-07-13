@@ -1,17 +1,6 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require rails-ujs
 //= require activestorage
+
 //= require template/jquery.min
 //= require template/jquery-migrate.min
 //= require template/popper
@@ -21,26 +10,20 @@
 //= require template/hs.header
 //= require template/hs.hamburgers
 
+//= require vendor/datatables
+//= require vendor/noty
 
-$(document).on('ready', function () {
-  // initialization of go to
-  // $.HSCore.components.HSGoTo.init('.js-go-to');
+//= require companies
 
-  // initialization of carousel
-  // $.HSCore.components.HSCarousel.init('.js-carousel');
-
-  // initialization of masonry
-  // $('.masonry-grid').imagesLoaded().then(function () {
-  //   $('.masonry-grid').masonry({
-  //     columnWidth: '.masonry-grid-sizer',
-  //     itemSelector: '.masonry-grid-item',
-  //     percentPosition: true
-  //   });
-  // });
-
-  // initialization of popups
-  // $.HSCore.components.HSPopup.init('.js-fancybox');
-});
+function noty_alert( type, msg, time = 2000) {
+  new Noty({
+      theme: 'bootstrap-v4',
+      type: type,
+      layout: 'topRight',
+      text: msg,
+      timeout: (true, time)
+  }).show();
+}
 
 $(window).on('load', function () {
   // initialization of header
