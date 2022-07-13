@@ -1,0 +1,22 @@
+<%= form_with(model: @company, id: 'form-company',class: 'g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10' ) do |form| %>
+  <div class="form-group row">
+    <div class="col-4">
+      <%= form.text_field :name, class: "form-control", placeholder: 'Nombre de la empresa', required: true %>
+      <div class="invalid-feedback company_name"></div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-4">
+      <%= form.text_field :description, class: "form-control", placeholder: "Descripción" %>
+      <div class="invalid-feedback company_description"></div>
+    </div>
+  </div>
+
+  <%= form.hidden_field :c_type, value: @d_type %>
+
+  <div class="row">
+    <%= form.submit "Guardar", class: "btn u-btn-primary mr-2" %>
+     <button type="button" class="btn u-btn-red" data-dismiss="modal" aria-label="Close">Cancelar</button>
+  </div>
+<% end %>
