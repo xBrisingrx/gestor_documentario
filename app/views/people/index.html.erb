@@ -1,0 +1,89 @@
+<section class="container-fluid g-py-10">
+  <h1>Personas registradas en el sistema</h1>
+    <%= link_to 'Nueva persona', new_person_path, class: 'btn u-btn-teal mb-2' %>
+
+    <button type="button" class="btn u-btn-indigo justify-content-start mb-2" data-toggle="modal" data-target="#modal_excel" > Exportar a excel </button>
+
+  <div class="card g-brd-primary rounded-0 g-mb-30 g-mt-10">
+    <h3 class="card-header g-bg-primary g-brd-transparent g-color-white g-font-size-16 rounded-0 mb-2">
+      <i class="fa fa-users g-mr-5"></i>
+      Personas
+    </h3>
+    <div class="px-2  pb-2">
+      <table id="people_table" name="people_table" class="table table-hover dt-responsive w-100 u-table--v1 table-sm">
+        <thead>
+          <tr>
+            <th>Legajo</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Cuil</th>
+            <th>Fecha nac</th>
+            <th>Nacionalidad</th>
+            <th>Domicilio</th>
+            <th>Telefono</th>
+            <th>Empresa</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- Modal exportar a Excel -->
+<div class="modal fade" id="modal_excel" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Seleccione los filtros </h5>     
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="form_descargar_excel" method="POST" action="">
+            <!-- motivo baja input -->
+            <div class="form-group row g-mb-5">
+              <label class="col-sm-2 col-form-label g-mb-5">Estado </label>
+              <select id="estado_persona" name="estado_persona" class="form-control">
+                <option value="1">Activos</option>
+                <option value="0">Inactivos</option>
+              </select>
+            </div>
+
+            <div class="form-group row g-mb-5">
+              <label class="col-sm-2 col-form-label g-mb-5 w-80">Empresa </label>
+              <select id="empresa_persona" name="empresa_persona" class="custom-select  w-80 col-sm-8">
+                <option value="0"> Todas las empresas </option>
+                <?php foreach ($empresas as $e): ?>
+                  <option value=" $e->id ?>" >  $e->nombre ?> </option>
+                <?php endforeach ?>
+              </select>
+            </div>
+
+            <div class="form-group row g-mb-5">
+              <label class="col-sm-2 col-form-label g-mb-5 w-80">Perfil </label>
+              <select id="perfil_persona" name="perfil_persona" class="custom-select  w-80 col-sm-8">
+                <option value="0"> Todos los perfiles </option>
+                <?php foreach ($perfiles as $p): ?>
+                  <option value=" $p->id ?>" >  $p->nombre ?> </option>
+                <?php endforeach ?>
+              </select>
+            </div>
+
+            <button type="submit" class="btn u-btn-primary" >Descargar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin modal exportar a excel -->
+
+<div class="modal fade" id="modal-person-attach-pdf" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>

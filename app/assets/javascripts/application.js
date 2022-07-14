@@ -14,6 +14,7 @@
 //= require vendor/noty
 
 //= require companies
+//= require people
 
 function noty_alert( type, msg, time = 2000) {
   new Noty({

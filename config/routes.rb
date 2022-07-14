@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   
   resources :companies, only: [:index, :new, :create, :edit, :update]
   post '/companies/disable'
+
+  resources :people
 end
