@@ -1,8 +1,9 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update]
+  before_action :verify_d_type, only: [:index, :new, :edit]
 
   def index
-    @companies = Company.where( active: true )
+    @companies = Company.where( active: true, d_type: @type )
   end
 
   def new

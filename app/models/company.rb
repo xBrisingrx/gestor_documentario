@@ -1,4 +1,7 @@
 class Company < ApplicationRecord
+
+	has_many :people
+
 	validates :name, presence: :true, 
 						length: {minimum: 3, maximum:100}, 
 						uniqueness: { scope: :d_type, 
