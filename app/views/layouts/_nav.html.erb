@@ -25,6 +25,17 @@
                   <%= link_to 'Inicio', root_path, class:'nav-link' %>
                 </li>
                 <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                  <%= link_to 'Personas', people_path, class: 'nav-link', id: 'nav-link-people', aria: { haspopup: 'true', expanded: 'false', controls: 'nav-submenu-1' } %>
+                  <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-people" aria-labelledby="nav-link-people">
+                    <li>
+                      <%= link_to 'Ver personal', people_path %>
+                    </li>
+                    <li>
+                      <%= link_to 'Admin empresas', companies_path( d_type: 1) %>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
                   <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">Pages</a>
                   <!-- Submenu -->
                   <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
