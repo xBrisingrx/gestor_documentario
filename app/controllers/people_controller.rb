@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: %i[ show edit update ]
-  before_action :set_company, only: %i[ new, edit ]
+  before_action :set_companies, only: %i[ new edit ]
 
   def index
     @people = Person.where(active: true)
