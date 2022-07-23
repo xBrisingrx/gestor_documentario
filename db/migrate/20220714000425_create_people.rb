@@ -12,7 +12,7 @@ class CreatePeople < ActiveRecord::Migration[5.2]
       t.string :nationality, limit: 50
       t.string :direction, null: true
       t.string :phone, limit: 20
-      t.date :start_activiry, null: true
+      t.date :start_activity, null: true
       t.boolean :active, default: true
       t.references :company, foreign_key: true
 
