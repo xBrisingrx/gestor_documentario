@@ -4,11 +4,6 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.where(active: true)
-    respond_to do |format|
-      format.html 
-      format.json 
-      format.xlsx
-    end
   end
 
   def show
