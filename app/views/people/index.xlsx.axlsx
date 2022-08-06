@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  head = s.add_style :bg_color => "00", :fg_color => "FF"
+  wb.add_worksheet(name: "Personas") do |sheet|
+    sheet.add_row ["Legajo", "Apellido", "Nombre", "DNI"], :style => head
+    @people.each do |person|
+      sheet.add_row [person.legajo, person.last_name, person.name, person.dni]
+    end
+  end
+end
