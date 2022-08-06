@@ -1,90 +1,120 @@
-<%= form_with(model: person, id: 'form-person',class: 'g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10', multipart: true, local: true ) do |form| %>
+<%= form_with(model: person, id: 'form-person',class: 'g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10 need-validations', multipart: true ) do |form| %>
   <div class="form-group row g-mb-10">
     <%= form.label :legajo, 'Nº legajo (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
     <div class="col-sm-6 col-md-6 col-lg-4">
-      <%= form.text_field :legajo, class: "form-control", required: true  %>
+      <%= form.text_field :legajo, class: "form-control", required: true %>
+      <small class="form-control-feedback text-danger person_legajo"></small>
     </div>
   </div>
   <div class="form-group row g-mb-10">
     <%= form.label :last_name, 'Apellido (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
     <div class="col-sm-6 col-md-6 col-lg-4">
       <%= form.text_field :last_name, class: "form-control", required: true %>
+      <small class="form-control-feedback text-danger person_last_name"></small>
     </div>
   </div>
   <div class="form-group row g-mb-10">
     <%= form.label :name, 'Nombre (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
     <div class="col-sm-6 col-md-6 col-lg-4">
       <%= form.text_field :name, class: "form-control", required: true %>
+      <small class="form-control-feedback text-danger person_name"></small>
     </div>
   </div>
 
   <div class="form-group row g-mb-10">
     <%= form.label :dni, 'DNI', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
     <div class="col-sm-6 col-md-6 col-lg-4">
-      <%= form.text_field :dni, class: "form-control", required: true, minlength: '8' %>
-      <% if @person.errors[:dni].any? %>
-        <small class="form-control-feedback"><%= @person.errors[:dni].first %></small>
-      <% end %>
+      <%= form.text_field :dni, class: "form-control", minlength: '8' %>
+      <small class="form-control-feedback text-danger person_dni"></small>
     </div>
-    <label class="form-check-inline u-check g-pl-25 col-2">
+    <label class="form-check-inline u-check col-2">
       <%= form.check_box :dni_has_expiration %>
       Tiene vencimiento
     </label>
-    <%= form.label :expiration_date_dni,"Fecha vencimiento", class: "col-2 col-sm-6 col-md-2 col-form-label"%>
-    <div class="col-3">
-      <%= form.date_field :expiration_date_dni, class: "form-control rounded-0 form-control-md" %>
-    </div>
   </div>
 
+  <div class="form-group row g-mb-10 expiration_date_dni">
+    <%= form.label :expiration_date_dni,"Fecha vencimiento:", class: "col-2 col-sm-6 col-md-2 col-form-label"%>
+    <div class="col-3">
+      <%= form.date_field :expiration_date_dni, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_expiration_date_dni"></small>
+    </div>
+  </div>
   <div class="form-group row g-mb-20">
-    <%= form.label :pdf_dni, 'DNI PDF (*)', class: 'col-4'  %>
-    <%= form.file_field :pdf_dni, class: 'form-control col-6', accept: "application/pdf"%>
+    <%= form.label :pdf_dni, 'DNI PDF', class: 'col-4'  %>
+    <label class="u-file-attach-v2 g-color-gray-dark-v5 mb-0">
+      <%= form.file_field :pdf_dni, class:'form-control' %>
+      <i class="icon-cloud-upload g-font-size-16 g-pos-rel g-top-2 g-mr-5"></i>
+      <span class="js-value">Anexar escaneo del DNI</span>
+    </label>
+    <small class="form-control-feedback text-danger person_expiration_pdf_dni"></small>
   </div>
 
   <div class="form-group row g-mb-10">
     <%= form.label :cuil, 'CUIL (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10"%><br>
     <div class="col-sm-3">
-      <%= form.text_field :cuil, class: "form-control", minlength: '11', required: true  %>
+      <%= form.text_field :cuil, class: "form-control"%>
+      <small class="form-control-feedback text-danger person_cuil"></small>
     </div>
-    <div class="col-sm-5">
-      <%= form.file_field :pdf_cuil, class:'form-control', accept: "application/pdf"%>
+    <div class="col-sm-4 col-md-2">
+      <label class="u-file-attach-v2 g-color-gray-dark-v5 mb-0">
+        <%= form.file_field :pdf_cuil, class:'form-control' %>
+          <i class="icon-cloud-upload g-font-size-16 g-pos-rel g-top-2 g-mr-5"></i>
+          <span class="js-value">Anexar archivo cuil</span>
+      </label>
+    </div>
+    <small class="form-control-feedback text-danger person_pdf_cuil"></small>
+  </div>
+
+  <div class="form-group row g-mb-10">
+    <%= form.label :birth_date, "Fecha nacimiento", class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
+    <div class="col-sm-3 input-group g-brd-primary--focus">
+      <%= form.date_field :birth_date, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_birth_date"></small>
     </div>
   </div>
 
   <div class="form-group row g-mb-10">
-    <%= form.label :birth_date, "Fecha nacimiento (*)", class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
+    <%= form.label :start_activity, "Fecha alta temprana", class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
     <div class="col-sm-3 input-group g-brd-primary--focus">
-      <%= form.date_field :birth_date, class: "form-control" %>
+      <%= form.date_field :start_activity, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_start_activity"></small>
     </div>
-    <div class="col-sm-5">
-      <%= form.file_field :pdf_start_activity, class:'form-control', accept: "application/pdf"%>
+    <div class="col-sm-4 col-md-3">
+      <label class="u-file-attach-v2 g-color-gray-dark-v5 mb-0">
+        <%= form.file_field :pdf_start_activity, class:'form-control' %>
+        <i class="icon-cloud-upload g-font-size-16 g-pos-rel g-top-2 g-mr-5"></i>
+        <span class="js-value">Anexar archivo alta temprana</span>
+      </label>
+      <small class="form-control-feedback text-danger person_pdf_start_activity"></small>
     </div>
   </div>
 
   <div class="form-group row g-mb-10">
     <%= form.label :nationality, 'Nacionalidad (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
-    <div class="col-sm-9">
+    <div class="col-sm-6 col-md-6 col-lg-4">
       <%= form.text_field :nationality, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_nationality"></small>
     </div>
   </div>
   <div class="form-group row g-mb-10">
     <%= form.label :direction, 'Domicilio (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
-    <div class="col-sm-9">
+    <div class="col-sm-6 col-md-6 col-lg-4">
       <%= form.text_field :direction, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_direction"></small>
     </div>
   </div>
   <div class="form-group row g-mb-10">
     <%= form.label :phone, 'Telefono (*)', class: "col-sm-3 col-md-2 col-form-label g-mb-10" %><br>
-    <div class="col-sm-9">
+    <div class="col-sm-6 col-md-6 col-lg-4">
       <%= form.text_field :phone, class: "form-control" %>
+      <small class="form-control-feedback text-danger person_phone"></small>
     </div>
   </div>
   <div class="form-group row">
-    <div class="col-6">
-      <%= form.label :company, "Pertenece a: (*)", class: "col-sm-3 col-md-2 col-form-label g-mb-10" %>
-    </div>
-    <div class="col-6">
-      <select name="person[company_id]" id="person_company_id" class="select-2-company">
+    <%= form.label :company, "Emmpresa: (*)", class: "col-sm-3 col-md-2 col-form-label g-mb-10" %>
+    <div class="col-sm-6 col-md-6 col-lg-2">
+      <select name="person[company_id]" id="person_company_id" class="select-2-company" required>
         <option> Seleccione empresa </option>
         <% @companies.each do |company| %>
           <% if !@person.nil? && @person.company_id == company.id %>
@@ -95,10 +125,11 @@
         <% end %>
       </select>
     </div>
+    <small class="form-control-feedback text-danger person_company"></small>
   </div>
 
   <div class="row">
     <%= form.submit "Guardar", class: "btn u-btn-primary mr-2" %>
-     <button type="button" class="btn u-btn-red" data-dismiss="modal" aria-label="Close">Cancelar</button>
+    <%= link_to 'Cancelar', people_path, class: 'btn u-btn-red' %>
   </div>
 <% end %>
