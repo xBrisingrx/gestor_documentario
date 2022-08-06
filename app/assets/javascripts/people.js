@@ -6,11 +6,15 @@ $(document).ready(function(){
     'ajax':'people',
     'columns': [
     {'data': 'legajo'},
-    {'data': 'last_name'},
     {'data': 'name'},
+    {'data': 'last_name'},
     {'data': 'dni'},
+    {'data': 'pdf_dni'},
+    {'data': 'dni_has_expiration'},
     {'data': 'cuil'},
+    {'data': 'pdf_cuil'},
     {'data': 'birth_date'},
+    {'data': 'pdf_start_activity'},
     {'data': 'nationality'},
     {'data': 'direction'},
     {'data': 'phone'},
@@ -38,7 +42,7 @@ $(document).ready(function(){
   })
 
   $("#form-person").on("ajax:success", function(event) {
-    window.location.href = event.detail[2].responseURL
+    window.location.href = event.detail[0].url
   }).on("ajax:error", function(event) {
     show_errors(event)
   })
