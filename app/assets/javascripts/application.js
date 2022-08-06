@@ -26,6 +26,21 @@ function noty_alert( type, msg, time = 2000) {
   }).show();
 }
 
+function show_errors(messages) {
+  let msg = JSON.parse( messages.detail[2].response )
+  let errors = document.querySelectorAll('.is-invalid')
+  if (errors !== null) {
+    errors.forEach( (el) => {
+      el.classList.remove('is-invalid')
+      document.getElementsByClassName( el.id ).item(0).innerText = ''
+    } )
+  }
+  $.each( msg, function( key, value ) {
+    $(`#form-person #person_${key}`).addClass('is-invalid')
+    $(`#form-person .person_${key}`).text( value[0] ).show('slow')
+  })
+}
+
 $(window).on('load', function () {
   // initialization of header
   $.HSCore.components.HSHeader.init($('#js-header'));
