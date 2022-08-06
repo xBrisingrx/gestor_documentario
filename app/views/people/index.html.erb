@@ -1,8 +1,7 @@
 <section class="container-fluid g-py-10">
   <h1>Personas registradas en el sistema</h1>
     <%= link_to 'Nueva persona', new_person_path, class: 'btn u-btn-teal mb-2' %>
-
-    <button type="button" class="btn u-btn-indigo justify-content-start mb-2" data-toggle="modal" data-target="#modal_excel" > Exportar a excel </button>
+    <%= link_to 'Exportar a excel', people_path(format: :xlsx), class: "btn u-btn-indigo justify-content-start mb-2" %>
 
   <div class="card g-brd-primary rounded-0 g-mb-30 g-mt-10">
     <h3 class="card-header g-bg-primary g-brd-transparent g-color-white g-font-size-16 rounded-0 mb-2">
