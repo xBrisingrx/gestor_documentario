@@ -22,7 +22,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.json { render json: {url: people_path}, status: :created, location: @person }
+        format.json { render json: {url: people_path}, status: :created }
         format.html { redirect_to people_path, notice: "Se registro una nueva persona." }
       else
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -35,11 +35,11 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to person_url(@person), notice: "Person was successfully updated." }
-        format.json { render :show, status: :ok, location: @person }
+        format.json { render json: {url: people_path}, status: :ok }
+        format.html { rredirect_to people_path, notice: "Datos actualizados." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
